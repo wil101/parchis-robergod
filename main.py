@@ -27,8 +27,8 @@ def seleccionarOpcion():
 
 # Metodo para definir todos los graficos de la interfaz
 def Gra():
-    global LB, BTN,Pan  # Label and button for the start page
-    Pan = Tk()  # Creates a new screen
+    global LB, BTN,Pan  # Etiqueta y botón para la página de inicio
+    Pan = Tk()  # Crea una nueva pantalla
     # Inicializar las imagenes con los objetos
     dado1 = PhotoImage(file="d1.gif")
     dado2 = PhotoImage(file="d2.gif")
@@ -124,7 +124,7 @@ class jugador:
         L_DADOS2.img = arregloDados[y]
         return (x, y)
 
-
+#se crean los espacio y el color de las casillas especiales
 class espacio(object):
 
     def __init__(self, numeroEspacio, etiqueta,x,y,tipoEspacio="normal", colorCasillaEspecial="ninguno",orientacion="Ninguna"):
@@ -189,7 +189,7 @@ class ficha:
         L_NOMBRES.config(text="NOMBRES")
     def imprimirPropiedades(self):
         return "Ficha %s: color= %s espacio=%s estado=%s" % (
-            self.nombreFicha, self.colorFicha, self.espacioActual.numeroEspacio, self.estadoJuego)
+            self.nombreFicha, self.colorFicha, self.espacioActual.numeroEspacio, self.estadoJuego) # se da el color a la ficha
     def eliminarFicha(self):
         self.etiqueta.destroy()
     def cambiarPosicion(self, NuevoEspacio):
@@ -226,7 +226,7 @@ class ficha:
     def num(self):
         return self.nombreFicha
 
-
+#  en este metodo se crea el tablero
 def CrearTablero():
     tablero = []
     for x in range(68):
@@ -234,7 +234,7 @@ def CrearTablero():
         labelF = ""
         labelI = ""
         orientacion = ""
-        #if x+1 in ([x1 for x1 in range(1,8)]+[x2 for x2 in range(61,68)]+[x3 for x3 in range(27,34)]+[x4 for x4 in range(35,42)]):
+        #i x+1 en ([x1 para x1 en rango(1,8)]+[x2 para x2 en rango(61,68)]+[x3 para x3 en rango(27,34)]+[x4 para x4 en rango(35,42)]):
         xF=0
         yF=0
         if x+1 in [y1 for y1 in range(1,9)]:
@@ -268,7 +268,7 @@ def CrearTablero():
             xF = 396
             yF = z * 18 + 308
         elif x+1 == 17:
-            orientacion="horizontal"
+            orientacion="horizontal" #se crea la horientacion horinzontal del tablero
             labelF = Label(Pan,bg="black",borderwidth=0)
             labelF.place(x=448,y=432,width=54,height=18)
             labelI = Label(Pan,bg="#04B112",borderwidth=0)
@@ -574,7 +574,7 @@ def OrdenDeJuego(ListaJugadores, modoDesarrollador=False):
 
 
 def GameOver(Jugadores):
-    numberWonPlayers = 0  # Counts the number of players that have already won
+    numberWonPlayers = 0  # Cuenta el número de jugadores que ya han ganado
     for jugadorActual in Jugadores:
         if jugadorActual.GanoJugador:
             numberWonPlayers += 1
@@ -621,9 +621,9 @@ def posiblesMovimientos(JugadorActual, resultadoDado, ListaJugadores):
         casillaFicha = fichaActual.espacioActual.numeroEspacio
         nombreFicha = fichaActual.nombreFicha
         posicionFinal = casillaFicha + resultadoDado
-        if casillaFicha in listaCasillasCarcel and resultadoDado != 13:  # Evalua si la casilla esta en la ficha y saca diferente de 5
+        if casillaFicha in listaCasillasCarcel and resultadoDado != 13:  # Evalua si la casilla esta en la ficha y saca diferente de 13
             continue
-        if casillaFicha in listaCasillasCarcel and resultadoDado == 13:  # Si el dado da 5 y hay una casilla en la carcel sale automaticamente
+        if casillaFicha in listaCasillasCarcel and resultadoDado == 13:  # Si el dado da 13 y hay una casilla en la carcel sale automaticamente
             if not (dat[colorJugador] in listaBloqueos and not dat[colorJugador] in numeros2) :
                 if (dat[colorJugador] in tuplaCasillasUnaFicha and numeros[dat[colorJugador]][0].colorFicha!=fichaActual.colorFicha):
                     return ([(nombreFicha + " sale de la carcel a la casilla: %d. Captura a %s." % (dat[colorJugador],numeros[dat[colorJugador]][0].nombreFicha), fichaActual,numeros[dat[colorJugador]][0])])
@@ -665,7 +665,7 @@ def posiblesMovimientos(JugadorActual, resultadoDado, ListaJugadores):
                 elif x in listaBloqueos or x > numeroPrimeraEspecial + 7:  #:()
                     bloqueo = True
                     break
-                  
+                        #tengo hambre despues vuelvo
             CasillaEspecial = 0
             ListaCasillasSeguro=(12, 17, 29, 34, 46, 51, 63, 68)
             ListaCasillasSalida=(5, 22, 39, 56)
@@ -884,10 +884,10 @@ def IniciarJuego():
                     dadoSeleccionado = 0
                     entrar_datos.config(state="normal")
                     entrar_datos.delete(0,END)
-                    entrar_datos.insert(0,"%s seleccione uno de los dados"%jugadorActual.nombre)
+                    entrar_datos.insert(0,"%s seleccione uno de los dados"%jugadorActual.nombre) #se escoge con cual dado mover
                     entrar_datos.config(state="readonly")
-                    L_DADOS1.bind("<Enter>",lambda x:FuncDados(L_DADOS1,0))
-                    L_DADOS2.bind("<Enter>",lambda x:FuncDados(L_DADOS2,0))
+                    L_DADOS1.bind("<Enter>",lambda x:FuncDados(L_DADOS1,0)) #dado1
+                    L_DADOS2.bind("<Enter>",lambda x:FuncDados(L_DADOS2,0)) #dado2
                     L_DADOS1.bind("<Button-1>",lambda x:FuncDados(L_DADOS1,2))
                     L_DADOS1.bind("<Leave>",lambda x:FuncDados(L_DADOS1,1))
                     L_DADOS2.bind("<Leave>",lambda x:FuncDados(L_DADOS2,1))
@@ -907,6 +907,7 @@ def IniciarJuego():
                           continue
                         elif dadoSeleccionado==2 and not ListaMovi2:
                           continue
+                        #con esta funcion se mueve las fichas con cada dado
                         elif dadoSeleccionado == 1 and len(ListaMovi1) == 1:
                             realizarMovimiento(ListaMovi1[0], Tablero, jugadorActual,Jugadores)
                             ListaMovi2 = posiblesMovimientos(jugadorActual, resultadoDado2, Jugadores)
@@ -939,7 +940,7 @@ def IniciarJuego():
             elif ListaMoviF and len(ListaMoviF) > 1:
                 realizarMovimiento(opciones(ListaMoviF, jugadorActual), Tablero, jugadorActual,Jugadores)
 
-        indicePrimerJugador += 1  # Defines the infinite cycle
+        indicePrimerJugador += 1  # Define el ciclo infinito
     Pan.quit()
     Jugadores.sort(key=lambda x:x.Posicion)
 
