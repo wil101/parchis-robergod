@@ -448,7 +448,7 @@ def CrearTablero():
             NuevaCasilla = espacio(72 + x + 1, labelF,450,z*18+20,"especial", "azul","horizontal")
         tablero.append(NuevaCasilla)
     lab=""
-    imagen=PhotoImage(file="corona.gif")
+    imagen=PhotoImage(file="Trofeo.gif")
     lab=Label(Pan,bg="black")
     lab.place(x=394,y=144,width=162,height=162)
     lab=Label(Pan,image=imagen)
