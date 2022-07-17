@@ -496,11 +496,11 @@ def CrearJugadoresYFichas(tablero, numeroJugadores, nombres):
 
     return jugadores
 
-def pedirDatos():
+def pedirDatos(): #se solicitan los nombres a los jugadores
     global entrar_datos,boton_entrada_dados,texto_ingresado
     texto_ingresado=""
     n = 0
-    Esp = Label(Pan, text="Esperando Jugadores...", bg="black", fg="purple", font=("Tahoma", 40))   
+    Esp = Label(Pan, text="Esperando Jugadores...", bg="black", fg="purple", font=("Tahoma", 40))  #indica se esperan los datos de los jugadores 
     Esp.place(y=0, x=0)
     entrar_datos = Entry(Pan, font = 'Helvetica 20',borderwidth=0)
     entrar_datos.place(x= 0, y = 500, width=550,height=50)
@@ -510,7 +510,7 @@ def pedirDatos():
     LBCuantos = Label(Pan, text="¿Cuántos jugadores van a ingresar?", bg="black", fg="white", font=("Tahoma", 25))
     LBCuantos.place(y=450, x=0) 
     entrar_datos.insert(0,"")
-    while (n <= 0 or n > 4):
+    while (n <= 0 or n > 4): # se solicita que se ingrese el numero de los jugadores en este caso seria maximo 4
         n=texto_ingresado
         try:
             n = int(n)
@@ -521,7 +521,7 @@ def pedirDatos():
     Eti = []
     for z in range(n):
         color = ""
-        if (z == 0): color = "#ED0D0D"
+        if (z == 0): color = "#ED0D0D" #los colores de los de fondo en el nombre del jugador
         if (z == 1): color = "#04B112"
         if (z == 2): color = "#ECC811"
         if (z == 3): color = "#2926DA"
@@ -725,6 +725,7 @@ def posiblesMovimientos(JugadorActual, resultadoDado, ListaJugadores):
 
 def realizarMovimiento(movimientoRealizar, tablero, jugadorActual,Jugadores): # Añadimos parametro jugador actual para poder definir la ultima ficha de cada jugador
     if movimientoRealizar == None:
+        #se realizan los movimientos
         return
     FichaCapturada = None
     listaCasillasCarcel = {'rojo': 69, 'verde': 70, 'amarillo': 71, 'azul': 72}
@@ -785,7 +786,7 @@ def realizarMovimiento(movimientoRealizar, tablero, jugadorActual,Jugadores): # 
         return
     jugadorActual.DefinirUltimaFicha(jugadorActual, FichaMover)
 
-def opciones(Lista, JugadorActual):
+def opciones(Lista, JugadorActual): # el jugador seleciona una opcion 
     eleccion = 0
     global entrar_datos,boton_entrada_dados,seleccion
     seleccion=False
@@ -819,7 +820,7 @@ def FuncDados(etiqueta,accion):
     elif accion==3:
         dadoSeleccionado=2
     
-def IniciarJuego():
+def IniciarJuego(): #se inicia el juego 
     global LB,BTN
     LB.destroy()
     BTN.destroy()
